@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>todo-vue App</title>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="./main.css">
     </head>
 
     <body>
@@ -18,7 +18,7 @@
 
             ({{ computedTodos.length }} 件を表示)
             <table>
-                <thead>
+                <thead v-pre>
                     <tr>
                         <th class="id">ID</th>
                         <th class="comment">コメント</th>
@@ -27,7 +27,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in computedTodos" v-bind:key="item.id">
+                    <tr 
+                        v-for="item in computedTodos"
+                        v-bind:key="item.id"
+                        v-bind:class="{done:item.state}">
                         <th>{{ item.id }}</th>
                         <td>{{ item.comment }}</td>
                         <td class="state">
@@ -36,7 +39,6 @@
                             </button>
                         </td>
                         <td class="button">
-                            <!-- 削除ボタン -->
                             <button v-on:click.ctrl="doRemove(item)">
                                 削除
                             </button>
@@ -47,14 +49,10 @@
             <p>※削除ボタンはコントロールを押したままクリック</p>
 
             <h2>新しい作業の追加</h2>
-            <form class="add-form" v-on:submit.orevent="doAdd">
-                <!-- コメントフォーム -->
+            <form class="add-form" v-on:submit.prevent="doAdd">
                 コメント <input type="text" ref="comment">
-                <!-- 追加ボタン -->
                 <button type="submit">追加</button>
             </form>
-            <!-- 絞り込みボタン -->
-            <!-- ToDoテーブル -->
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
         <script src="main.js"></script>
