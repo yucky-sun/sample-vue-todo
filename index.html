@@ -31,8 +31,8 @@
                         <th>{{ item.id }}</th>
                         <td>{{ item.comment }}</td>
                         <td class="state">
-                            <button v-on:click="doChangeState(item">
-                                {{ item.state }}
+                            <button v-on:click="doChangeState(item)">
+                                {{ labels[item.state] }}
                             </button>
                         </td>
                         <td class="button">
@@ -41,10 +41,10 @@
                                 削除
                             </button>
                         </td>
-                      <!-- 要素の情報 -->>
                     </tr>
                 </tbody>
             </table>
+            <p>※削除ボタンはコントロールを押したままクリック</p>
 
             <h2>新しい作業の追加</h2>
             <form class="add-form" v-on:submit.orevent="doAdd">
