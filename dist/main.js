@@ -36,7 +36,7 @@ const app = new Vue({
             }, this)
         },
         labels() {
-            return this.options.reduce(funcion (a, b) {
+            return this.options.reduce(function (a, b) {
                 return Object.assign(a, { [b.value]: b.label })
             }, {})
         }
