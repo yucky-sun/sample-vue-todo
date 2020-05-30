@@ -21,29 +21,26 @@ const app = new Vue({
 
     data: {
         todos: [],
-
+        current: -1,
         options: [
             { value: -1, label: '全て' },
             { value: 0,  label: '作業中' },
             { value: 1,  label: '完了' }
-        ],
-        // 選択してるoptionsのvalueを記憶するためのデータ
-        // 初期値を[-1]にする
-        current: -1
+        ]
     },
 
     computed: {
-        lebels() {
-            return this.options.reduce(funcion(a, b) {
-                return Object.assign(a, { [b.value]: b.label })
-            }, {})
-        },
-        
         computedTodos: function() {
             return this.todos.filter(function (el) {
                 return this.current < 0 ? true : this.current === el.state
             }, this)
         }
+        labels() {
+            return this.options.reduce(funcion (a, b) {
+                return Object.assign(a, { [b.value]: b.label })
+            }, {})
+        },
+
     },
 
     watch: {
